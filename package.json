@@ -19,7 +19,7 @@
     "url": "git://github.com/mike-goodwin/connect-azuretables.git"
   },
   "dependencies": {
-    "azure-storage": "2.0.0",
+    "azure-storage": "2.3.0",
     "cron": "1.2.1"
   },
   "devDependencies": {
