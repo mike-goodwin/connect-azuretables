@@ -1,6 +1,8 @@
 [![Build Status](https://travis-ci.org/mike-goodwin/connect-azuretables.svg?branch=master)](https://travis-ci.org/mike-goodwin/connect-azuretables) [![codecov.io](http://codecov.io/github/mike-goodwin/connect-azuretables/coverage.svg?branch=master)](http://codecov.io/github/mike-goodwin/connect-azuretables?branch=master) [![Code Climate](https://codeclimate.com/github/mike-goodwin/connect-azuretables/badges/gpa.svg)](https://codeclimate.com/github/mike-goodwin/connect-azuretables) [![GitHub license](https://img.shields.io/github/license/mike-goodwin/connect-azuretables.svg)](LICENSE.txt)
 [![Dependency Status](https://dependencyci.com/github/mike-goodwin/connect-azuretables/badge)](https://dependencyci.com/github/mike-goodwin/connect-azuretables)
-[![Known Vulnerabilities](https://snyk.io/test/github/mike-goodwin/connect-azuretables/badge.svg)](https://snyk.io/test/github/snyk/goof)
+[![Known Vulnerabilities](https://snyk.io/test/github/mike-goodwin/connect-azuretables/badge.svg)](https://snyk.io/test/github/mike-goodwin/connect-azuretables)
+[![Coverity Scan Build Status](https://scan.coverity.com/projects/14308/badge.svg)](https://scan.coverity.com/projects/mike-goodwin-connect-azuretables)
+
 
 Connect-AzureTables
 ===================
@@ -29,7 +31,8 @@ To use:
     var session = require('express-session');
     var AzureTablesStoreFactory = require('connect-azuretables')(session);
     var app = express();
-    app.use(session({ store: AzureTablesStoreFactory.create(), secret: 'keyboard cat'}));
+    var options = {}; // <-- connect-azuretables options go here
+    app.use(session({ store: AzureTablesStoreFactory.create(options), secret: 'keyboard cat'}));
 
 By default, the Azure storage account will be read from environment variables. Either specify 
 
@@ -43,7 +46,7 @@ or both of
 Alternatively you can specify the account/key code as options:
 
     var options = {storageAccount: '<account name>', accessKey: '<key>'};
-    app.use(session({store: AzureTablesStoreFactory.create(), secret: 'keyboard cat'}));
+    app.use(session({store: AzureTablesStoreFactory.create(options), secret: 'keyboard cat'}));
   
 By default the session data will be stored in a table called
 

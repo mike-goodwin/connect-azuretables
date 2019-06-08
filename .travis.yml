@@ -1,5 +1,30 @@
 language: node_js
 node_js:
   - 4.1
+before_script:
+  - npm install -g grunt-cli
+  - "export DISPLAY=:99.0"
+  - "sh -e /etc/init.d/xvfb start"
+  - sleep 3 # give xvfb some time to start
+script: if [ ${COVERITY_SCAN_BRANCH} != 1 ]; then npm test ; fi
 after_success:
   - npm run codecov
+
+env:
+  global:
+   # The next declaration is the encrypted COVERITY_SCAN_TOKEN, created
+   #   via the "travis encrypt" command using the project repo's public key
+   - secure: "POrkxpD++FsareTurnGxHAcabQe1uvvKp7Zr6Z9GR6pdB6O8ad7yhqrTxIDl4tfA2z6nZfczzjFKTqGQhUJj3iS6naAJAYsK8SNOBfOyHar1BnJTXY9hvgUfHh9GwnYVwM5PsctfEL1M8a0oOR9glbetzoHkQRJUbgTDWJtcpQdunhj0JOYWy5EIT9M/TA0/ZHlIhc68tx/rttJuoEuYiSKgD3sOB0ZYkOD2CGcg+xxYQ0zW4nsxCTc0dlTjv2h03om82wLuQ5P/pLBenTO3w3VjvWQ0sEEKnKituGyqQFW7qQwuapdBHC5NIJsBUQmApgd5BzE/rQ5E5lpN8xMe+WqmYPxOMAVVjOqe8HtpjTi+10sOgIHS/MOBs52Ccav/n2qvJEJL5WMtclq14gu4XZfHQeNqGKr27vTSqvcIb1tJg2O84SAZhmz+zPOdiV/REYobTr+q4dYxOBx58EdsqL0jVQZ1QO4fmJRRM84WSClaZobnEu4Kw33JadkA7o/KbWNsvS5kL1hof+0Bsz7wwrTQId2W8IczRqFuF9DT3yU6CXqUFaTj+QAT8hl/waAu/rXRomBsXWpAyfLyAsJ1aEJGtbzX82TyXIVogfEZKbmCKPNFHmKbD2fjsuTujQbZwAI1uc0yz9rm5zNAsn0vcQSHWNVT6HtPw3yqYtSzIk8="
+
+before_install:
+      - echo -n | openssl s_client -connect scan.coverity.com:443 | sed -ne '/-BEGIN CERTIFICATE-/,/-END CERTIFICATE-/p' | sudo tee -a /etc/ssl/certs/ca-
+
+addons:
+  coverity_scan:
+    project:
+      name: "mike-goodwin/connect-azuretables"
+      description: "Connect sessions store based on Azure Table Storage"
+    notification_email: mike.goodwin@owasp.org
+    build_command_prepend: ""
+    build_command:   "--no-command --fs-capture-search lib"
+    branch_pattern: coverity-scan
