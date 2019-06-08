@@ -1,6 +1,6 @@
 {
   "name": "connect-azuretables",
-  "version": "1.0.19",
+  "version": "1.0.20",
   "description": "Azure Table Storage session store for express-session",
   "main": "index.js",
   "directories": {
@@ -23,7 +23,7 @@
     "url": "git://github.com/mike-goodwin/connect-azuretables.git"
   },
   "dependencies": {
-    "azure-storage": "2.6.0",
+    "azure-storage": "2.10.3",
     "cron": "1.3.0"
   },
   "devDependencies": {
