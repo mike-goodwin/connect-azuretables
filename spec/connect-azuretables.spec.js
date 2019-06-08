@@ -575,6 +575,7 @@ describe('get tests: ', function() {
         spyOn(mockTableService, 'retrieveEntity').and.callThrough();
         azureTablesStore.get(sid, handler.callBack);
         expect(mockTableService.retrieveEntity.calls.count()).toEqual(2);
+        expect(handler.callBack.calls.argsFor(0)).toEqual([null, undefined]);
 
     });
 
