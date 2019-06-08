@@ -14,7 +14,8 @@
   "author": "Mike Goodwin <mike.goodwin@owasp.org> (https://github.com/mike-goodwin)",
   "contributors": [
     "Mike Goodwin <mike.goodwin@owasp.org> (https://github.com/mike-goodwin)",
-    "Masaki Muranaka <monaka@monami-ya.jp> (https://github.com/monaka)"
+    "Masaki Muranaka <monaka@monami-ya.jp> (https://github.com/monaka)",
+    "Graham Hunter (https://github.com/graham-sportsmgmt)"
   ],
   "license": "Apache-2.0",
   "homepage": "https://github.com/mike-goodwin/connect-azuretables",
